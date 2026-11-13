@@ -2,7 +2,7 @@ import { ArrowUpRight, ScanFace } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { AnimatedButton } from '../components/AnimatedButton'
 import { MediaPlaceholder } from '../components/MediaPlaceholder'
-import { Reveal } from '../components/Reveal'
+import { FadeUp, RevealImage, RevealText, StaggerContainer } from '../components/Reveal'
 import { channels } from '../data/channels'
 import { localMedia, profile } from '../data/portfolio'
 
@@ -42,33 +42,33 @@ export function About() {
       <BackgroundVideo />
       <div className="shell hero-layout">
         <div className="hero-masthead" aria-hidden="true">
-          <Reveal className="masthead-reveal">PORTFOLIO</Reveal>
+          <RevealText intro className="masthead-reveal">PORTFOLIO</RevealText>
         </div>
         <div className="hero-copy">
           <div>
             <p className="section-label">01 / About</p>
             <h1 id="about-title">
-              <Reveal as="span" className="reveal-line" delay={0.16}>{profile.name.split(' ')[0]}</Reveal>{' '}
-              <Reveal as="span" className="reveal-line" delay={0.26}>{profile.name.split(' ').slice(1).join(' ')}</Reveal>
+              <RevealText intro as="span" className="reveal-line" delay={0.16}>{profile.name.split(' ')[0]}</RevealText>{' '}
+              <RevealText intro as="span" className="reveal-line" delay={0.26}>{profile.name.split(' ').slice(1).join(' ')}</RevealText>
             </h1>
-            <p className="hero-role">{profile.role}</p>
-            <p className="hero-intro">{profile.description}</p>
+            <FadeUp intro delay={0.31}><p className="hero-role">{profile.role}</p></FadeUp>
+            <FadeUp intro delay={0.41}><p className="hero-intro">{profile.description}</p></FadeUp>
           </div>
           <div>
             <div className="flex flex-wrap gap-3">
-              <Reveal delay={0.32}><AnimatedButton href="#projects">Explore My Work</AnimatedButton></Reveal>
-              {cv && <Reveal delay={0.42}><AnimatedButton href={cv} variant="secondary" download>Download CV</AnimatedButton></Reveal>}
+              <FadeUp intro delay={0.5}><AnimatedButton href="#projects">Explore My Work</AnimatedButton></FadeUp>
+              {cv && <FadeUp intro delay={0.62}><AnimatedButton href={cv} variant="secondary" download>Download CV</AnimatedButton></FadeUp>}
             </div>
-            {careers.length > 0 && <Reveal delay={0.5} className="career-links">
+            {careers.length > 0 && <FadeUp intro delay={0.68} className="career-links">
               {careers.map(({ label, href }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer">
                   {label}<ArrowUpRight size={15} aria-hidden="true" />
                 </a>
               ))}
-            </Reveal>}
+            </FadeUp>}
           </div>
         </div>
-        <Reveal delay={0.1} className="portrait-wrap">
+        <RevealImage intro delay={0.1} className="portrait-wrap">
           <div className="portrait-frame">
             <MediaPlaceholder src={localMedia(profile.portrait)} alt={profile.name} eager fallback={
               <div className="portrait-placeholder">
@@ -77,21 +77,23 @@ export function About() {
               </div>
             } />
           </div>
-        </Reveal>
+        </RevealImage>
       </div>
       <div className="shell identity-strip">
-        <Reveal direction="left" className="identity-cell">
+        <StaggerContainer>{(delayFor) => <>
+        <FadeUp delay={delayFor(0)} className="identity-cell">
           <strong>{profile.name}</strong><span>Developer Portfolio</span>
-        </Reveal>
-        <Reveal direction="left" delay={0.07} className="identity-cell identity-focus">
+        </FadeUp>
+        <FadeUp delay={delayFor(1)} className="identity-cell identity-focus">
           <p>Interested in backend systems, APIs, databases, and practical web applications.</p>
-        </Reveal>
-        <Reveal direction="left" delay={0.14} className="identity-cell">
+        </FadeUp>
+        <FadeUp delay={delayFor(2)} className="identity-cell">
           <strong>Based in Vietnam</strong><span>Open to Remote Opportunities</span>
-        </Reveal>
-        <Reveal direction="left" delay={0.21} className="identity-cell identity-tags">
+        </FadeUp>
+        <FadeUp delay={delayFor(3)} className="identity-cell identity-tags">
           <span>Backend-focused</span><span>Graduation Thesis</span>
-        </Reveal>
+        </FadeUp>
+        </>}</StaggerContainer>
       </div>
     </section>
   )

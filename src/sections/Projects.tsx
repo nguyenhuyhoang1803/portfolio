@@ -2,7 +2,8 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, GitFork, PanelsTopLeft, Route,
 import { useState } from 'react'
 import { AnimatedButton } from '../components/AnimatedButton'
 import { MediaPlaceholder } from '../components/MediaPlaceholder'
-import { Reveal } from '../components/Reveal'
+import { FadeUp, RevealImage, RevealText } from '../components/Reveal'
+import { ScrollWords } from '../components/ScrollWords'
 import { localMedia, profile, project, webLink } from '../data/portfolio'
 
 const process = ['Discover', 'Structure', 'Build', 'Test', 'Improve']
@@ -31,13 +32,14 @@ export function Projects() {
   return (
     <section id="projects" className="projects" aria-labelledby="projects-title">
       <div className="shell">
-        <Reveal><h2 id="projects-title" className="section-label">02 / Selected Work</h2></Reveal>
+        <FadeUp><h2 id="projects-title" className="section-label">02 / Selected Work</h2></FadeUp>
         <article className="project-layout" aria-labelledby="project-name">
           <div className="project-copy min-w-0">
               <p className="project-category section-label">{project.category}</p>
-              <h3 id="project-name" className="heading-clip"><Reveal as="span" className="reveal-line" delay={0.12}>{project.title.slice(0, -6)}<span className="project-accent">{project.title.slice(-6)}</span></Reveal></h3>
-              <Reveal direction="right" delay={0.22}><p className="project-description">{project.description}</p></Reveal>
+              <h3 id="project-name" className="heading-clip"><RevealText as="span" className="reveal-line" delay={0.12}>{project.title.slice(0, -6)}<span className="project-accent">{project.title.slice(-6)}</span></RevealText></h3>
+              <FadeUp delay={0.24}><p className="project-description">{project.description}</p></FadeUp>
 
+              <FadeUp delay={0.36}>
               <details id="internbridge-case-study" className="project-details">
                 <summary>Explore the Project <ArrowUpRight size={17} aria-hidden="true" /></summary>
                 {details ? <>
@@ -54,12 +56,13 @@ export function Projects() {
                 </>}
                 </> : <p className="project-note">The full case study is coming soon.</p>}
               </details>
+              </FadeUp>
             {(demo || repository) && <div className="mt-5 flex flex-wrap gap-3">
               {demo && <AnimatedButton href={demo} external icon={ArrowUpRight}>View Demo</AnimatedButton>}
               {repository && <AnimatedButton href={repository} external variant="secondary" icon={GitFork}>GitHub</AnimatedButton>}
             </div>}
           </div>
-          <Reveal direction="left" delay={0.1} className="project-media min-w-0">
+          <RevealImage direction="left" delay={0.1} className="project-media min-w-0">
             <figure className="browser-frame">
               <div className="browser-screen">
                 <MediaPlaceholder key={image?.src} src={image?.src} alt={image?.alt ?? ''} fallback={
@@ -77,14 +80,14 @@ export function Projects() {
                   onClick={() => setSelected((selected + 1) % gallery.length)}><ChevronRight size={20} /></button>
               </figcaption>}
             </figure>
-          </Reveal>
+          </RevealImage>
         </article>
         <div className="supporting-grid" aria-label="More from InternBridge">
           {[
             { title: 'Main Platform View', src: localMedia(project.cover), Icon: PanelsTopLeft },
             { title: 'Workflow Screenshot', src: localMedia(project.screenshots[0]?.src ?? ''), Icon: Route },
           ].map(({ title, src, Icon }, index) => (
-            <Reveal className="support-item" key={title} delay={index * 0.08}>
+            <FadeUp className="support-item" key={title} delay={index * 0.12}>
               <figure>
                 <div className="support-visual">
                   <MediaPlaceholder src={src} alt={title + ' of InternBridge'} fallback={
@@ -93,9 +96,9 @@ export function Projects() {
                 </div>
                 <figcaption>{title}</figcaption>
               </figure>
-            </Reveal>
+            </FadeUp>
           ))}
-          <Reveal className="support-item" delay={0.16}>
+          <FadeUp className="support-item" delay={0.24}>
             <a className="support-case" href="#internbridge-case-study" onClick={() => {
               const detail = document.querySelector<HTMLDetailsElement>('#internbridge-case-study')
               if (detail) detail.open = true
@@ -106,33 +109,33 @@ export function Projects() {
               </div>
               <span className="support-caption">InternBridge Case Study <ArrowUpRight size={16} aria-hidden="true" /></span>
             </a>
-          </Reveal>
+          </FadeUp>
         </div>
         <div className="editorial-grid">
-          <Reveal className="editorial-cell">
+          <FadeUp className="editorial-cell">
             <h3 className="section-label">01 / Education</h3>
             <p className="editorial-title">{profile.university}</p>
             <p>{profile.degree}</p>
             <p>Graduation Thesis · {project.title}</p>
-          </Reveal>
-          <Reveal className="editorial-cell" delay={0.09}>
+          </FadeUp>
+          <FadeUp className="editorial-cell" delay={0.12}>
             <h3 className="section-label">02 / Experience</h3>
             <p className="editorial-title">Academic Projects</p>
             <p>Backend-oriented development</p>
             <p>APIs, databases, debugging, and documentation</p>
-          </Reveal>
-          <Reveal className="editorial-cell" delay={0.18}>
+          </FadeUp>
+          <FadeUp className="editorial-cell" delay={0.24}>
             <h3 className="section-label">03 / Development Process</h3>
             <ol className="process-list">
               {process.map((step, index) => (
-                <Reveal as="li" key={step} delay={0.2 + index * 0.09}>
+                <FadeUp as="li" key={step} delay={0.32 + index * 0.1}>
                   <span aria-hidden="true">0{index + 1}</span>{step}
-                </Reveal>
+                </FadeUp>
               ))}
             </ol>
-          </Reveal>
+          </FadeUp>
         </div>
-        <Reveal className="personal-statement"><p>{profile.statement}</p></Reveal>
+        <ScrollWords text={profile.statement} />
       </div>
     </section>
   )

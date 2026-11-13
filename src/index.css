@@ -72,7 +72,7 @@ main { overflow: clip; }
 .button--primary:hover { background: #104edb; }
 .button--secondary:hover { border-color: var(--color-ice); background: var(--color-surface); }
 .button svg, .contact-arrow, .project-details summary svg { transition: transform .18s; }
-.button:hover svg, .contact-row:hover .contact-arrow, .project-details summary:hover svg { transform: translateX(3px); }
+.button:hover svg, .project-details summary:hover svg { transform: translateX(3px); }
 .action:active { transform: translateY(1px); }
 
 .projects { padding-block: clamp(2.4rem, 5vw, 4.5rem); }
@@ -113,6 +113,7 @@ main { overflow: clip; }
 .contact-description { color: var(--color-ice); margin-block: .7rem 1.25rem; }
 .contact-list { display: grid; gap: .42rem; }
 .contact-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .7rem; min-height: 45px; border: 1px solid var(--color-line); padding: .45rem .7rem; color: var(--color-ice); font-size: .9rem; overflow-wrap: anywhere; }
+.contact-row:hover .contact-arrow { transform: translateX(4px); }
 .contact-row:hover { border-color: #6798ff; background: #10234a; color: var(--color-ink); }
 .footer { padding-block: 1.1rem; text-align: center; color: var(--color-muted); font-size: .82rem; }
 .cursor-ring { position: fixed; z-index: 20; top: 0; left: 0; width: 23px; height: 23px; transform: translate(-50%, -50%); border: 1px solid #94b5e1a0; border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity .15s, scale .18s; }
@@ -196,11 +197,12 @@ main { overflow: clip; }
 .support-case-visual { height: clamp(92px, 9vw, 128px); background: linear-gradient(135deg, #12366b 0 30%, #091a36 30%); }
 .support-case { display: block; }
 .support-caption, .support-item figcaption { display: flex; justify-content: space-between; gap: .5rem; padding-top: .65rem; font-size: .94rem; font-weight: 650; }
-.support-case:hover .support-visual { border-color: #6798ff; }
+.support-visual { transition: border-color .18s ease-out; }
+.support-item:hover .support-visual { border-color: var(--color-electric); }
 .support-case svg { transition: transform .18s; }
-.support-case:hover .support-caption svg { transform: translate(3px,-2px); }
+.support-case:hover .support-caption svg { transform: translateX(4px); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .support-visual:hover img { transform: scale(1.03); }
+  .support-item:hover .support-visual img { transform: scale(1.025); }
 }
 .editorial-grid { border-top: 0; margin-top: 0; }
 .editorial-cell h3 { padding-bottom: .55rem; margin-bottom: .85rem; border-bottom: 1px solid var(--color-line); }
