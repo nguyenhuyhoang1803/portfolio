@@ -4,6 +4,8 @@ A personal developer portfolio featuring an introduction, the InternBridge gradu
 
 It includes responsive navigation, a scroll progress indicator, motion that respects reduced-motion preferences, and fallbacks for optional local media.
 
+[Live portfolio](https://portfolio-gilt-iota-j1wgsqepa4.vercel.app)
+
 ## Run locally
 
 Use Node.js 24.
