@@ -1,16 +1,14 @@
 const motionPreference = new URLSearchParams(window.location.search).get('motion')
-const preferenceKey = 'portfolio-motion-preview'
+const preferenceKey = 'portfolio-motion-preference'
 
-function readMotionPreference() {
+function animationsEnabled() {
   try {
     if (motionPreference === 'preview') localStorage.setItem(preferenceKey, 'enabled')
-    if (motionPreference === 'system') localStorage.removeItem(preferenceKey)
-    return localStorage.getItem(preferenceKey) === 'enabled'
+    if (motionPreference === 'system') localStorage.setItem(preferenceKey, 'system')
+    return motionPreference !== 'system' && localStorage.getItem(preferenceKey) !== 'system'
   } catch {
-    return false
+    return motionPreference !== 'system'
   }
 }
 
-const savedPreference = readMotionPreference()
-export const previewMotion = motionPreference === 'preview' ||
-  (motionPreference !== 'system' && savedPreference)
+export const previewMotion = animationsEnabled()
