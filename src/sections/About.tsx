@@ -45,25 +45,28 @@ export function About() {
           <Reveal className="masthead-reveal">PORTFOLIO</Reveal>
         </div>
         <div className="hero-copy">
-          <Reveal delay={0.2}>
+          <div>
             <p className="section-label">01 / About</p>
-            <h1 id="about-title">{profile.name}</h1>
+            <h1 id="about-title">
+              <Reveal as="span" className="reveal-line" delay={0.16}>{profile.name.split(' ')[0]}</Reveal>{' '}
+              <Reveal as="span" className="reveal-line" delay={0.26}>{profile.name.split(' ').slice(1).join(' ')}</Reveal>
+            </h1>
             <p className="hero-role">{profile.role}</p>
             <p className="hero-intro">{profile.description}</p>
-          </Reveal>
-          <Reveal delay={0.3}>
+          </div>
+          <div>
             <div className="flex flex-wrap gap-3">
-              <AnimatedButton href="#projects">Explore My Work</AnimatedButton>
-              {cv && <AnimatedButton href={cv} variant="secondary" download>Download CV</AnimatedButton>}
+              <Reveal delay={0.32}><AnimatedButton href="#projects">Explore My Work</AnimatedButton></Reveal>
+              {cv && <Reveal delay={0.42}><AnimatedButton href={cv} variant="secondary" download>Download CV</AnimatedButton></Reveal>}
             </div>
-            {careers.length > 0 && <div className="career-links">
+            {careers.length > 0 && <Reveal delay={0.5} className="career-links">
               {careers.map(({ label, href }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer">
                   {label}<ArrowUpRight size={15} aria-hidden="true" />
                 </a>
               ))}
-            </div>}
-          </Reveal>
+            </Reveal>}
+          </div>
         </div>
         <Reveal delay={0.1} className="portrait-wrap">
           <div className="portrait-frame">

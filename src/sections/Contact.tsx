@@ -10,11 +10,13 @@ export function Contact() {
     <section id="contact" className="contact" aria-labelledby="contact-title">
       <div className="shell contact-layout">
         <div className="heading-clip">
-          <Reveal>
-            <h2 id="contact-title">Let’s <em>Build</em> Together</h2>
-          </Reveal>
+          <h2 id="contact-title">
+            <Reveal as="span" className="reveal-line">Let’s</Reveal>{' '}
+            <Reveal as="span" className="reveal-line" delay={0.11}><em>Build</em></Reveal>{' '}
+            <Reveal as="span" className="reveal-line" delay={0.22}>Together</Reveal>
+          </h2>
         </div>
-        <Reveal delay={0.12}>
+        <div>
           <p className="section-label">03 / Contact</p>
           <p className="contact-description">{contact.description}</p>
           <ul className="contact-list">
@@ -31,7 +33,7 @@ export function Contact() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

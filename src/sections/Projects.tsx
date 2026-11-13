@@ -33,10 +33,10 @@ export function Projects() {
       <div className="shell">
         <Reveal><h2 id="projects-title" className="section-label">02 / Selected Work</h2></Reveal>
         <article className="project-layout" aria-labelledby="project-name">
-          <Reveal direction="right" delay={0.2} className="project-copy min-w-0">
+          <div className="project-copy min-w-0">
               <p className="project-category section-label">{project.category}</p>
-              <h3 id="project-name">{project.title.slice(0, -6)}<span>{project.title.slice(-6)}</span></h3>
-              <p className="project-description">{project.description}</p>
+              <h3 id="project-name" className="heading-clip"><Reveal as="span" className="reveal-line" delay={0.12}>{project.title.slice(0, -6)}<span className="project-accent">{project.title.slice(-6)}</span></Reveal></h3>
+              <Reveal direction="right" delay={0.22}><p className="project-description">{project.description}</p></Reveal>
 
               <details id="internbridge-case-study" className="project-details">
                 <summary>Explore the Project <ArrowUpRight size={17} aria-hidden="true" /></summary>
@@ -58,7 +58,7 @@ export function Projects() {
               {demo && <AnimatedButton href={demo} external icon={ArrowUpRight}>View Demo</AnimatedButton>}
               {repository && <AnimatedButton href={repository} external variant="secondary" icon={GitFork}>GitHub</AnimatedButton>}
             </div>}
-          </Reveal>
+          </div>
           <Reveal direction="left" delay={0.1} className="project-media min-w-0">
             <figure className="browser-frame">
               <div className="browser-screen">
@@ -124,7 +124,11 @@ export function Projects() {
           <Reveal className="editorial-cell" delay={0.18}>
             <h3 className="section-label">03 / Development Process</h3>
             <ol className="process-list">
-              {process.map((step, index) => <li key={step}><span aria-hidden="true">0{index + 1}</span>{step}</li>)}
+              {process.map((step, index) => (
+                <Reveal as="li" key={step} delay={0.2 + index * 0.09}>
+                  <span aria-hidden="true">0{index + 1}</span>{step}
+                </Reveal>
+              ))}
             </ol>
           </Reveal>
         </div>
