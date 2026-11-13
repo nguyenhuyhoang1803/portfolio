@@ -53,9 +53,8 @@ export function Header() {
     }}>
       <div ref={progress} className="reading-progress" aria-hidden="true" />
       <div className="shell header-inner">
-        <a href="#about" className="wordmark" onClick={() => setOpen(false)}>
-          <strong aria-hidden="true">NHH<b>/</b></strong>
-          <span>{profile.name}</span>
+        <a href="#about" className="wordmark" aria-label={profile.name + " — Home"} onClick={() => setOpen(false)}>
+          <img src={import.meta.env.BASE_URL + "media/brand/signature.svg"} alt="" width={920} height={530} />
         </a>
         <button ref={toggle} className="menu-toggle action" type="button" aria-expanded={open}
           aria-controls="main-nav" aria-label={open ? 'Close navigation' : 'Open navigation'}
