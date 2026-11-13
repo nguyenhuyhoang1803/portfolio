@@ -1,3 +1,2 @@
-// Allow a local preview without changing the browser's accessibility preference.
-export const previewMotion = import.meta.env.DEV &&
-  new URLSearchParams(window.location.search).get('motion') === 'preview'
+// An explicit preview link enables reveals for this page load.
+export const previewMotion = new URLSearchParams(window.location.search).get('motion') === 'preview'
